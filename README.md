@@ -1,5 +1,5 @@
 # Claim back storage from thin provisioned disk on esxi 7 vmware
-
+## Please give this repo a star ⭐ if you found the script useful.
 
 ## ssh login to your virtual machine
 ```sh
