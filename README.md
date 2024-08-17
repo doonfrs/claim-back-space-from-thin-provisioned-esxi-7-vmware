@@ -5,20 +5,13 @@
 ```sh
 sudo -i
 
-lvdisplay 
-
-# LV Name                ubuntu-lv <=== we need this
-# VG Name                ubuntu-vg <=== and this
-
 #extract empty blocks to a file
 sudo dd if=/dev/zero of=/zerofill bs=1M
+# You will see no storage available error, but it is ok, the next step will resolve this error.
 
 #remove this file
 sudo rm -f /zerofill
-# Now we removed all the extra space, we have to extend the file system to take all the available space, otherwise you will start to see 'no space left' error
 
-sudo lvextend -l +100%FREE /dev/ubuntu-vg/ubuntu-lv
-sudo resize2fs /dev/ubuntu-vg/ubuntu-lv
 ```
 ## shutdown the virtual machine 
 ```sh
@@ -31,8 +24,9 @@ shutdown now
 cd /vmfs/volumes/[YOUR STORAGE NAME]/[YOUR VM MACHINE NAME]
 
 vmkfstools -K your-vmdk-file.vmdk
+# until you see Hole Punching: 100% done.
 
-# Because the new space will not always appears, this will be better than restarting the whole server
+# Because the new space will not always appears, the following commands will be better than restarting the whole server
 /etc/init.d/hostd restart
 /etc/init.d/vpxa restart
 ```
