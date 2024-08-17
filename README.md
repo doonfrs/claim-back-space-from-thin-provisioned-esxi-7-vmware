@@ -31,7 +31,12 @@ shutdown now
 cd /vmfs/volumes/[YOUR STORAGE NAME]/[YOUR VM MACHINE NAME]
 
 vmkfstools -K your-vmdk-file.vmdk
+
+# Because the new space will not always appears, this will be better than restarting the whole server
+/etc/init.d/hostd restart
+/etc/init.d/vpxa restart
 ```
 
 ## boot your vm again, and check the gained space from esxi console
+
 
